@@ -1,0 +1,8 @@
+[user]
+	name = josevazf
+	email = josevaz.fco@gmail.com
+[init]
+	defaultBranch = main
+[push]
+	default = current
+	autoSetupRemote = true
