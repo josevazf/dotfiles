@@ -3,7 +3,7 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   build = ":TSUpdate",
   dependencies = {
-    "windwp/nvim-ts-autotag", -- autoclosing functionality for tags
+    "windwp/nvim-ts-autotag",
   },
   config = function()
     -- import nvim-treesitter plugin
@@ -22,9 +22,7 @@ return {
       },
       -- ensure these language parsers are installed
       ensure_installed = {
-        "solidity",
         "json",
-        "rust",
         "javascript",
         "typescript",
         "tsx",
@@ -44,18 +42,6 @@ return {
         "query",
         "vimdoc",
         "c",
-        "cpp",
-        "make",
-        "python",
-        "tmux",
-        "sql",
-        "go",
-        "diff",
-        "dockerfile",
-        "elixir",
-        "erlang",
-        "cairo",
-        "toml",
       },
       incremental_selection = {
         enable = true,

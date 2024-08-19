@@ -1,4 +1,3 @@
--- Bootstrap 'lazy'
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
@@ -13,11 +12,11 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ { import = "jvf.plugins" }, { import = "jvf.plugins.lsp" } }, {
-    checker = {
-        enabled = true,
-        notify = false,
-    },
-    change_detection = {
-        notify = false -- turn off changes notification
-    },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
 })
