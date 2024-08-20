@@ -1,3 +1,6 @@
+# Detect OS Type
+OS_TYPE=$(uname)
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -16,14 +19,24 @@ export PATH="$PATH:/usr/bin/ethui:$PATH"
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 eval "$(~/.local/bin/mise activate zsh)"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-alias cfg='/usr/bin/git --git-dir=/home/jvf/.dotfiles/ --work-tree=/home/jvf'
+# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Detect the OS
+if [[ "$OS_TYPE" == "Darwin" ]]; then
+    alias cfg='/usr/bin/git --git-dir=/Users/josevazf/.dotfiles/ --work-tree=/Users/josevazf'
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [[ "$OS_TYPE" == "Linux" ]]; then 
+    alias cfg='/usr/bin/git --git-dir=/home/jvf/.dotfiles/ --work-tree=/home/jvf'
+    source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+else
+    echo "Unknown OS: $OS_TYPE"
+fi
 
 # History setup
 HISTFILE=$HOME/.zhistory
