@@ -12,10 +12,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
+    -- { "LazyVim/LazyVim", import = "lazyvim.plugins.extras.lang.rust" },
     { import = "jvf.plugins.lsp" },
     { import = "jvf.plugins" },
-    { "LazyVim/LazyVim", import = "lazyvim.plugins.extras.lang.rust" },
-    -- { import = "lazyvim.plugins.extras.lang.rust" },
 }, {
     checker = {
         enabled = true,

@@ -7,15 +7,9 @@ return {
         { "folke/neodev.nvim", opts = {} },
     },
     config = function()
-        -- import lspconfig plugin
         local lspconfig = require("lspconfig")
-
-        -- import mason_lspconfig plugin
         local mason_lspconfig = require("mason-lspconfig")
-
-        -- import cmp-nvim-lsp plugin
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
         local keymap = vim.keymap -- for conciseness
 
         vim.api.nvim_create_autocmd("LspAttach", {
@@ -111,39 +105,32 @@ return {
                     },
                 })
             end,
-            -- ["rust_analyzer"] = function()
-            --     -- configure rust server
-            --     lspconfig["rust_analyzer"].setup({
-            --         capabilities = capabilities,
-            --         on_attach = function(client, bufnr)
-            --             vim.lsp.inlay_hint.enable()
-            --         end,
-            --         filetypes = { "rust" },
-            --         root_dir = util.root_pattern("Cargo.toml"),
-            --         settings = {
-            --             ["rust_analyzer"] = {
-            --                 cargo = {
-            --                     allFeatures = true,
-            --                 },
-            --                 checkOnSave = {
-            --                     allFeatures = true,
-            --                     overrideCommand = {
-            --                         "cargo",
-            --                         "clippy",
-            --                         "--workspace",
-            --                         "--message-format=json",
-            --                         "--all-targets",
-            --                         "--all-features",
-            --                     },
-            --                 },
-            --                 inlayHints = {
-            --                     enable = true,
-            --                     typeHints = true,
-            --                 },
-            --             },
-            --         },
-            --     })
-            -- end,
+            ["rust_analyzer"] = function()
+                -- configure rust server
+                lspconfig["rust_analyzer"].setup({
+                    capabilities = capabilities,
+                    filetypes = { "rust" },
+                    root_dir = util.root_pattern("Cargo.toml"),
+                    settings = {
+                        ["rust_analyzer"] = {
+                            cargo = {
+                                allFeatures = true,
+                            },
+                            checkOnSave = {
+                                allFeatures = true,
+                                overrideCommand = {
+                                    "cargo",
+                                    "clippy",
+                                    "--workspace",
+                                    "--message-format=json",
+                                    "--all-targets",
+                                    "--all-features",
+                                },
+                            },
+                        },
+                    },
+                })
+            end,
         })
     end,
 }
