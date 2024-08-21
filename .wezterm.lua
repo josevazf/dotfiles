@@ -9,10 +9,12 @@ config.font = wezterm.font("MesloLGS Nerd Font Mono")
 config.font_size = 12
 config.cell_width = 1.0
 config.enable_tab_bar = false
-config.color_scheme = "Apple System Colors"
+-- config.color_scheme = "Pnevma"
+config.color_scheme = "Nord (Gogh)"
+-- config.color_scheme = "Nighty (Gogh)"
+-- config.color_scheme = "Numix Darkest (terminal.sexy)"
 config.window_decorations = "RESIZE"
-
--- config.window_background_opacity = 0.8
+config.window_background_opacity = 0.95
 -- config.macos_window_background_blur = 10
 
 return config

@@ -8,18 +8,17 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-# Created by `pipx` on 2024-03-01 09:53:05
 export PATH="$PATH:/home/jvf/.local/bin"
 export PATH="$PATH:/usr/bin/ethui:$PATH"
 
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 eval "$(~/.local/bin/mise activate zsh)"
 
-# eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -32,6 +31,7 @@ if [[ "$OS_TYPE" == "Darwin" ]]; then
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 elif [[ "$OS_TYPE" == "Linux" ]]; then 
     alias cfg='/usr/bin/git --git-dir=/home/jvf/.dotfiles/ --work-tree=/home/jvf'
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 else
@@ -52,7 +52,6 @@ bindkey '^[[A' history-search-backward
 bindkey '^[[B' history-search-forward
 
 # ---- FZF -----
-
 # Set up fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 # --- setup fzf theme ---
