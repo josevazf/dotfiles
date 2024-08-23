@@ -37,4 +37,4 @@ local function toggle_inlay_hints()
 end
 
 -- Mapping to toggle inlay hints
-keymap.set("n", "<leader>h", toggle_inlay_hints, { desc = "Toggle LSP inlay hints" })
+keymap.set("n", "<leader>H", toggle_inlay_hints, { desc = "Toggle LSP inlay hints" })

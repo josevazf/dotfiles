@@ -15,6 +15,6 @@ config.color_scheme = "Nord (Gogh)"
 -- config.color_scheme = "Numix Darkest (terminal.sexy)"
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.95
--- config.macos_window_background_blur = 10
+config.macos_window_background_blur = 10
 
 return config
