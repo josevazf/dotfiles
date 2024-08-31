@@ -1,7 +1,7 @@
 return {
     "projekt0n/github-nvim-theme",
-    lazy = false, -- make sure to load this during startup
-    priority = 1000, -- make sure to load this before all the other plugins
+    lazy = false,
+    priority = 1000,
     config = function()
         --        local specs = {
         --            all = {
@@ -18,6 +18,12 @@ return {
                 dim_inactive = false,
                 styles = {
                     comments = "italic",
+                },
+            },
+            groups = {
+                all = {
+                    Normal = { bg = "none" },
+                    NvimTreeNormal = { bg = "none" },
                 },
             },
         })
