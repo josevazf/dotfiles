@@ -23,6 +23,7 @@ return {
             groups = {
                 all = {
                     Normal = { bg = "none" },
+                    NormalNC = { bg = "none" },
                     NvimTreeNormal = { bg = "none" },
                 },
             },

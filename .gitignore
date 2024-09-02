@@ -1,5 +1,8 @@
 # General
 lazy-lock.json
 
+# tmux
+.config/tmux/plugins
+
 # macOS
 .DS_Store
