@@ -20,6 +20,11 @@ return {
             autotag = {
                 enable = true,
             },
+            -- -- enable folder/file diagnostics
+            -- diagnostics = {
+            --     enable = true,
+            --     show_on_dirs = true,
+            -- },
             -- ensure these language parsers are installed
             ensure_installed = {
                 "json",
@@ -58,6 +63,10 @@ return {
                     node_decremental = "<bs>",
                 },
             },
+            modules = {},
+            sync_install = false,
+            auto_install = true,
+            ignore_install = {},
         })
     end,
 }
