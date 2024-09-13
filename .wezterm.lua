@@ -10,9 +10,14 @@ config.font_size = 12
 config.cell_width = 1.0
 config.enable_tab_bar = false
 -- config.color_scheme = "Pnevma"
-config.color_scheme = "Nord (Gogh)"
+-- config.color_scheme = "Nord (Gogh)"
 -- config.color_scheme = "Nighty (Gogh)"
 -- config.color_scheme = "Numix Darkest (terminal.sexy)"
+local scheme = wezterm.get_builtin_color_schemes()["Tokyo Night"]
+--scheme.brights[1] = scheme.ansi[1]
+config.color_schemes = { ["Tokyo Night"] = scheme }
+config.color_scheme = "Tokyo Night"
+
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 0.95
 config.macos_window_background_blur = 10

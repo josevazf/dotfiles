@@ -7,7 +7,8 @@ return {
 
         lualine.setup({
             options = {
-                theme = "OceanicNext",
+                -- theme = "OceanicNext",
+                theme = "nordic",
                 component_separators = { left = "", right = "" },
                 section_separators = { left = "", right = "" },
                 -- component_separators = "",
