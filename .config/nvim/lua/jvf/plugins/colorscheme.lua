@@ -3,15 +3,6 @@
 --     lazy = false,
 --     priority = 1000,
 --     config = function()
---         --        local specs = {
---         --            all = {
---         --                syntax = {
---         --                    conditional = keyword,
---         --                    operator = keyword,
---         --
---         --                }
---         --            }
---         --        }
 --         require("github-theme").setup({
 --             --            specs = specs,
 --             options = {
@@ -35,19 +26,22 @@
 
 return {
     "AlexvZyl/nordic.nvim",
+    branch = "dev",
     lazy = false,
     priority = 1000,
     config = function()
-        --     require("nordic").setup({
-        --         cursorline = {
-        --             "dark",
-        --         },
-        --     })
-        require("nordic").load()
         require("nordic").setup({
+            transparent = {
+                bg = true,
+                float = false,
+            },
             cursorline = {
                 "dark",
             },
+            telescope = {
+                style = "classic",
+            },
         })
+        require("nordic").load()
     end,
 }
