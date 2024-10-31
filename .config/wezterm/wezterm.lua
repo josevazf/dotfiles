@@ -20,7 +20,7 @@ config.color_scheme = "nordic"
 -- config.color_scheme = "Apprentice (Gogh)"
 
 config.window_decorations = "RESIZE"
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.99
 config.macos_window_background_blur = 10
 
 config.window_padding = {
