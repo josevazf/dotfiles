@@ -31,6 +31,7 @@ return {
                 "graphql",
                 "rust_analyzer",
                 "jsonls",
+                "solidity_ls_nomicfoundation",
             },
         })
 

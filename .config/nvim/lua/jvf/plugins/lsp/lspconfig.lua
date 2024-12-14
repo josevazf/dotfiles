@@ -82,19 +82,16 @@ return {
                 })
             end,
             ["graphql"] = function()
-                -- configure graphql language server
                 lspconfig["graphql"].setup({
                     capabilities = capabilities,
                     filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
                 })
             end,
             ["lua_ls"] = function()
-                -- configure lua server (with special settings)
                 lspconfig["lua_ls"].setup({
                     capabilities = capabilities,
                     settings = {
                         Lua = {
-                            -- make the language server recognize "vim" global
                             diagnostics = {
                                 globals = { "vim" },
                             },
@@ -106,7 +103,6 @@ return {
                 })
             end,
             ["rust_analyzer"] = function()
-                -- configure rust server
                 lspconfig["rust_analyzer"].setup({
                     capabilities = capabilities,
                     filetypes = { "rust" },
@@ -129,6 +125,15 @@ return {
                             },
                         },
                     },
+                })
+            end,
+            ["solidity_ls_nomicfoundation"] = function()
+                lspconfig["solidity_ls_nomicfoundation"].setup({
+                    capabilities = capabilities,
+                    cmd = { "nomicfoundation-solidity-language-server", "--stdio" },
+                    filetypes = { "solidity" },
+                    root_dir = util.root_pattern("hardhat.config.*", "foundry.toml", "remappings.*", ".git"),
+                    single_file_support = true,
                 })
             end,
         })
