@@ -5,4 +5,9 @@
 	defaultBranch = main
 [push]
 	default = current
-	autoSetupRemote = true
+    autoSetupRemote = true
+[alias]
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
