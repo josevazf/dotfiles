@@ -8,9 +8,12 @@
     autoSetupRemote = true
 [alias]
     a = add
-    co = checkout
     br = branch
     ci = commit
     st = status
+    ps = push
+    sts = stash
+    ft = fetch
+    pl = pull
     unstage = restore --staged
     aliases = config --get-regexp alias
