@@ -26,7 +26,7 @@
 
 return {
     "AlexvZyl/nordic.nvim",
-    branch = "dev",
+    -- branch = "dev",
     lazy = false,
     priority = 1000,
     config = function()

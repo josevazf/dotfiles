@@ -27,13 +27,21 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 # Detect the OS
 if [[ "$OS_TYPE" == "Darwin" ]]; then
     alias cfg='/usr/bin/git --git-dir=/Users/josevazf/.dotfiles/ --work-tree=/Users/josevazf'
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    # source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    
+    # Homebrew Postgresql
+    export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/postgresql@17/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/postgresql@17/include"
 elif [[ "$OS_TYPE" == "Linux" ]]; then 
     alias cfg='/usr/bin/git --git-dir=/home/jvf/.dotfiles/ --work-tree=/home/jvf'
     eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
     source /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source ~/powerlevel10k/powerlevel10k.zsh-theme
+    source ~/powerlevel10k/powerlevel10k.zsh-theme
 else
     echo "Unknown OS: $OS_TYPE"
 fi
