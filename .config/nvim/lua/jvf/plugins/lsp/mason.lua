@@ -30,6 +30,8 @@ return {
                 "lua_ls",
                 "graphql",
                 "rust_analyzer",
+                "jsonls",
+                "solidity_ls_nomicfoundation",
             },
         })
 
