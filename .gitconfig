@@ -18,3 +18,5 @@
     co = checkout
     unstage = restore --staged
     aliases = config --get-regexp alias
+[core]
+	excludesFile = ~/.gitignore_global

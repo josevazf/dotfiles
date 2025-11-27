@@ -74,4 +74,14 @@ export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
+# ---- direnv ----
+eval "$(direnv hook zsh)"
+
+
+# ---- ALIASES ----
 alias cl="clear"
+alias rd="npm run dev"
+alias rc="npm run check"
+
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
