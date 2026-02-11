@@ -80,8 +80,20 @@ eval "$(direnv hook zsh)"
 
 # ---- ALIASES ----
 alias cl="clear"
+
 alias rd="npm run dev"
 alias rc="npm run check"
+alias rl="npm run lint"
+alias rf="npm run format"
+
+alias ga="git a ."
+alias gfp="git ft && git pl"
+alias gp="git ps"
+alias go="git co"
+alias gc="git ci -m"
+alias gr="git rebase"
+
+alias traktor='~/projects/traktor-streaming-proxy/start.sh'
 
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
