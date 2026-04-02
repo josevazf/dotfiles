@@ -1,4 +1,7 @@
 {
+  "env": {
+    "ENABLE_LSP_TOOL": "1"
+  },
   "permissions": {
     "allow": [
       "Bash(gh pr list:*)",
@@ -9,6 +12,11 @@
       "Bash(gh issue view:*)"
     ]
   },
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "bash ~/.claude/statusline-command.sh"
+  },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
     "impeccable@impeccable": true,
@@ -18,6 +26,17 @@
     "jdtls-lsp@claude-plugins-official": true,
     "playground@claude-plugins-official": true,
     "pr-review-toolkit@claude-plugins-official": true,
-    "code-review@claude-plugins-official": true
-  }
+    "code-review@claude-plugins-official": true,
+    "figma@claude-plugins-official": true,
+    "context7@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "ralph-loop@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true,
+    "elixir-ls-lsp@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "playwright@claude-plugins-official": true,
+    "hookify@claude-plugins-official": true
+  },
+  "skipDangerousModePermissionPrompt": true
 }
