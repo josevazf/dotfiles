@@ -1,0 +1,8 @@
+# Direnv files
+.direnv
+.envrc
+
+.env
+
+# Folders
+node_modules/
