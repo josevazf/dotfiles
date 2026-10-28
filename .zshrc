@@ -95,5 +95,10 @@ alias gr="git rebase"
 
 alias traktor='~/projects/traktor-streaming-proxy/start.sh'
 
+alias cld="claude"
+
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Home"
+export JAVA_HOME="/opt/homebrew/opt/openjdk/libexec/openjdk.jdk/Contents/Homeo"
+
+export PNPM_HOME="$HOME/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"

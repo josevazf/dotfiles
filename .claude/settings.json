@@ -9,17 +9,285 @@
       "Bash(gh pr diff:*)",
       "Bash(gh pr checks:*)",
       "Bash(gh issue list:*)",
-      "Bash(gh issue view:*)"
+      "Bash(gh issue view:*)",
+      "Bash(rtk:*)"
     ]
   },
-  "model": "opus",
+  "model": "opus[1m]",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt|elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-deck hook-handler",
+            "async": true
+          }
+        ]
+      },
+      {
+        "matcher": "permission_prompt|elicitation_dialog|agent_needs_input",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'unset IFS; set -f; umask 077; [ -n \"$AOE_INSTANCE_ID\" ] || exit 0; case \"$AOE_INSTANCE_ID\" in *[!0-9a-zA-Z_-]*) exit 0 ;; esac; B=/tmp/aoe-hooks-501; mkdir -p \"$B\" 2>/dev/null || exit 0; LS=$(LC_ALL=C ls -ldn \"$B\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; ME=$(id -u 2>/dev/null) || exit 0; [ \"$3\" = \"$ME\" ] || exit 0; D=\"$B/$AOE_INSTANCE_ID\"; mkdir -p \"$D\" 2>/dev/null; LS=$(LC_ALL=C ls -ldn \"$D\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; [ \"$3\" = \"$ME\" ] || exit 0; printf waiting > \"$D/status\" 2>/dev/null; exit 0 # aoe-hooks'"
+          }
+        ]
+      },
+      {
+        "matcher": "idle_prompt|agent_completed",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'unset IFS; set -f; umask 077; [ -n \"$AOE_INSTANCE_ID\" ] || exit 0; case \"$AOE_INSTANCE_ID\" in *[!0-9a-zA-Z_-]*) exit 0 ;; esac; B=/tmp/aoe-hooks-501; mkdir -p \"$B\" 2>/dev/null || exit 0; LS=$(LC_ALL=C ls -ldn \"$B\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; ME=$(id -u 2>/dev/null) || exit 0; [ \"$3\" = \"$ME\" ] || exit 0; D=\"$B/$AOE_INSTANCE_ID\"; mkdir -p \"$D\" 2>/dev/null; LS=$(LC_ALL=C ls -ldn \"$D\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; [ \"$3\" = \"$ME\" ] || exit 0; printf idle > \"$D/status\" 2>/dev/null; exit 0 # aoe-hooks'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -r '/Users/josevazf/.nodeterm/agent-hooks/claude.sh' ]; then sh '/Users/josevazf/.nodeterm/agent-hooks/claude.sh'; else cat >/dev/null 2>&1 || :; fi"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-deck hook-handler",
+            "async": true
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -r '/Users/josevazf/.nodeterm/agent-hooks/claude.sh' ]; then sh '/Users/josevazf/.nodeterm/agent-hooks/claude.sh'; else cat >/dev/null 2>&1 || :; fi",
+            "timeout": 600
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-deck hook-handler"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-deck hook-handler",
+            "async": true
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -r '/Users/josevazf/.nodeterm/agent-hooks/claude.sh' ]; then sh '/Users/josevazf/.nodeterm/agent-hooks/claude.sh'; else cat >/dev/null 2>&1 || :; fi"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-deck hook-handler",
+            "async": true
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c '[ -n \"$AOE_INSTANCE_ID\" ] || exit 0; command -v aoe >/dev/null 2>&1 || exit 0; aoe __extract-session-id 2>/dev/null; exit 0 # aoe-hooks'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -r '/Users/josevazf/.nodeterm/agent-hooks/claude.sh' ]; then sh '/Users/josevazf/.nodeterm/agent-hooks/claude.sh'; else cat >/dev/null 2>&1 || :; fi"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-deck hook-handler",
+            "async": true
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'unset IFS; set -f; umask 077; [ -n \"$AOE_INSTANCE_ID\" ] || exit 0; case \"$AOE_INSTANCE_ID\" in *[!0-9a-zA-Z_-]*) exit 0 ;; esac; B=/tmp/aoe-hooks-501; mkdir -p \"$B\" 2>/dev/null || exit 0; LS=$(LC_ALL=C ls -ldn \"$B\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; ME=$(id -u 2>/dev/null) || exit 0; [ \"$3\" = \"$ME\" ] || exit 0; D=\"$B/$AOE_INSTANCE_ID\"; mkdir -p \"$D\" 2>/dev/null; LS=$(LC_ALL=C ls -ldn \"$D\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; [ \"$3\" = \"$ME\" ] || exit 0; printf idle > \"$D/status\" 2>/dev/null; exit 0 # aoe-hooks'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -r '/Users/josevazf/.nodeterm/agent-hooks/claude.sh' ]; then sh '/Users/josevazf/.nodeterm/agent-hooks/claude.sh'; else cat >/dev/null 2>&1 || :; fi"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "agent-deck hook-handler",
+            "async": true
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c '[ -n \"$AOE_INSTANCE_ID\" ] || exit 0; command -v aoe >/dev/null 2>&1 || exit 0; aoe __extract-session-id 2>/dev/null; exit 0 # aoe-hooks'"
+          },
+          {
+            "type": "command",
+            "command": "sh -c 'unset IFS; set -f; umask 077; [ -n \"$AOE_INSTANCE_ID\" ] || exit 0; case \"$AOE_INSTANCE_ID\" in *[!0-9a-zA-Z_-]*) exit 0 ;; esac; B=/tmp/aoe-hooks-501; mkdir -p \"$B\" 2>/dev/null || exit 0; LS=$(LC_ALL=C ls -ldn \"$B\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; ME=$(id -u 2>/dev/null) || exit 0; [ \"$3\" = \"$ME\" ] || exit 0; D=\"$B/$AOE_INSTANCE_ID\"; mkdir -p \"$D\" 2>/dev/null; LS=$(LC_ALL=C ls -ldn \"$D\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; [ \"$3\" = \"$ME\" ] || exit 0; printf running > \"$D/status\" 2>/dev/null; exit 0 # aoe-hooks'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -r '/Users/josevazf/.nodeterm/agent-hooks/claude.sh' ]; then sh '/Users/josevazf/.nodeterm/agent-hooks/claude.sh'; else cat >/dev/null 2>&1 || :; fi"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "rtk hook claude"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'unset IFS; set -f; umask 077; [ -n \"$AOE_INSTANCE_ID\" ] || exit 0; case \"$AOE_INSTANCE_ID\" in *[!0-9a-zA-Z_-]*) exit 0 ;; esac; B=/tmp/aoe-hooks-501; mkdir -p \"$B\" 2>/dev/null || exit 0; LS=$(LC_ALL=C ls -ldn \"$B\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; ME=$(id -u 2>/dev/null) || exit 0; [ \"$3\" = \"$ME\" ] || exit 0; D=\"$B/$AOE_INSTANCE_ID\"; mkdir -p \"$D\" 2>/dev/null; LS=$(LC_ALL=C ls -ldn \"$D\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; [ \"$3\" = \"$ME\" ] || exit 0; IN=$(cat 2>/dev/null); S=running; case \"$IN\" in *\\\"tool_name\\\":\\\"AskUserQuestion\\\"*) S=waiting ;; esac; printf %s \"$S\" > \"$D/status\" 2>/dev/null; exit 0 # aoe-hooks'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -r '/Users/josevazf/.nodeterm/agent-hooks/claude.sh' ]; then sh '/Users/josevazf/.nodeterm/agent-hooks/claude.sh'; else cat >/dev/null 2>&1 || :; fi"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "AskUserQuestion",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'unset IFS; set -f; umask 077; [ -n \"$AOE_INSTANCE_ID\" ] || exit 0; case \"$AOE_INSTANCE_ID\" in *[!0-9a-zA-Z_-]*) exit 0 ;; esac; B=/tmp/aoe-hooks-501; mkdir -p \"$B\" 2>/dev/null || exit 0; LS=$(LC_ALL=C ls -ldn \"$B\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; ME=$(id -u 2>/dev/null) || exit 0; [ \"$3\" = \"$ME\" ] || exit 0; D=\"$B/$AOE_INSTANCE_ID\"; mkdir -p \"$D\" 2>/dev/null; LS=$(LC_ALL=C ls -ldn \"$D\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; [ \"$3\" = \"$ME\" ] || exit 0; printf running > \"$D/status\" 2>/dev/null; exit 0 # aoe-hooks'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -r '/Users/josevazf/.nodeterm/agent-hooks/claude.sh' ]; then sh '/Users/josevazf/.nodeterm/agent-hooks/claude.sh'; else cat >/dev/null 2>&1 || :; fi"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'unset IFS; set -f; umask 077; [ -n \"$AOE_INSTANCE_ID\" ] || exit 0; case \"$AOE_INSTANCE_ID\" in *[!0-9a-zA-Z_-]*) exit 0 ;; esac; B=/tmp/aoe-hooks-501; mkdir -p \"$B\" 2>/dev/null || exit 0; LS=$(LC_ALL=C ls -ldn \"$B\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; ME=$(id -u 2>/dev/null) || exit 0; [ \"$3\" = \"$ME\" ] || exit 0; D=\"$B/$AOE_INSTANCE_ID\"; mkdir -p \"$D\" 2>/dev/null; LS=$(LC_ALL=C ls -ldn \"$D\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; [ \"$3\" = \"$ME\" ] || exit 0; printf idle > \"$D/status\" 2>/dev/null; exit 0 # aoe-hooks'"
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -r '/Users/josevazf/.nodeterm/agent-hooks/claude.sh' ]; then sh '/Users/josevazf/.nodeterm/agent-hooks/claude.sh'; else cat >/dev/null 2>&1 || :; fi"
+          }
+        ]
+      }
+    ],
+    "ElicitationResult": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh -c 'unset IFS; set -f; umask 077; [ -n \"$AOE_INSTANCE_ID\" ] || exit 0; case \"$AOE_INSTANCE_ID\" in *[!0-9a-zA-Z_-]*) exit 0 ;; esac; B=/tmp/aoe-hooks-501; mkdir -p \"$B\" 2>/dev/null || exit 0; LS=$(LC_ALL=C ls -ldn \"$B\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; ME=$(id -u 2>/dev/null) || exit 0; [ \"$3\" = \"$ME\" ] || exit 0; D=\"$B/$AOE_INSTANCE_ID\"; mkdir -p \"$D\" 2>/dev/null; LS=$(LC_ALL=C ls -ldn \"$D\" 2>/dev/null) || exit 0; set -- $LS; M=\"$1\"; case \"$M\" in drwx------|drwx------.|drwx------+|drwx------@) ;; *) exit 0 ;; esac; [ \"$3\" = \"$ME\" ] || exit 0; printf running > \"$D/status\" 2>/dev/null; exit 0 # aoe-hooks'"
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -r '/Users/josevazf/.nodeterm/agent-hooks/claude.sh' ]; then sh '/Users/josevazf/.nodeterm/agent-hooks/claude.sh'; else cat >/dev/null 2>&1 || :; fi"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if [ -r '/Users/josevazf/.nodeterm/agent-hooks/claude.sh' ]; then sh '/Users/josevazf/.nodeterm/agent-hooks/claude.sh'; else cat >/dev/null 2>&1 || :; fi"
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
   },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
-    "impeccable@impeccable": true,
     "typescript-lsp@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "pyright-lsp@claude-plugins-official": true,
@@ -32,11 +300,69 @@
     "github@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true,
-    "elixir-ls-lsp@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "skill-creator@claude-plugins-official": true,
     "playwright@claude-plugins-official": true,
-    "hookify@claude-plugins-official": true
+    "hookify@claude-plugins-official": true,
+    "deploy-on-aws@claude-plugins-official": true,
+    "aws-serverless@claude-plugins-official": true,
+    "databases-on-aws@claude-plugins-official": true,
+    "security-guidance@claude-plugins-official": true,
+    "windsor-ai@claude-plugins-official": true,
+    "crit@crit": true,
+    "claude-code-sentry-monitor@sergical": true
   },
-  "skipDangerousModePermissionPrompt": true
+  "extraKnownMarketplaces": {
+    "crit": {
+      "source": {
+        "source": "github",
+        "repo": "tomasz-tomczyk/crit"
+      }
+    },
+    "sergical": {
+      "source": {
+        "source": "github",
+        "repo": "sergical/claude-code-sentry-monitor"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "remoteControlAtStartup": false,
+  "skipAutoPermissionPrompt": true,
+  "autoMode": {
+    "environment": [
+      "### Org-wide",
+      "**Organization**: wearefractional (GitHub org; repo github.com:wearefractional/casa-financeira-platform.git)",
+      "**Cloud provider(s)**: DigitalOcean (api.digitalocean.com contacted 8×; doctl CLI used 25×; infra/*.tf references DO resources)",
+      "**Repository visibility**: private (wearefractional/casa-financeira-platform, confirmed via gh)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: Deploy secrets via CI/environment (CI secret names referenced: AGENT_PROVIDER_API_KEY, BOOTSTRAP_ADMIN_EMAIL, CLERK_PUBLISHABLE_KEY, CLERK_SECRET_KEY, CONNECTOR_SECRET_KEY, DIGITALOCEAN_ACCESS_TOKEN, DOCUMENT_AI_API_KEY, DO_UPTIME_CHECK_ID_PROD, DO_UPTIME_CHECK_ID_STAGING, DO_UPTIME_TOKEN, FRACTIONAL_INGEST_TOKEN, FRACTIONAL_KPI_SECRET, FRACTIONAL_KPI_URL, GMAIL_PUBSUB_TOPIC, GMAIL_PUSH_AUDIENCE, GMAIL_PUSH_SERVICE_ACCOUNT, GOOGLE_OAUTH_CLIENT_ID, GOOGLE_OAUTH_CLIENT_SECRET, LLUNI_PARTNER_CODENAME, PERSON_MATCH_KEY_SECRET); local dev values live in gitignored .envrc/.env.local, never in tracked files",
+      "**Default / protected branches**: main (protected per gh; no rulesets listed — classic branch protection in effect)",
+      "**CI/CD deploy targets**: DigitalOcean App Platform — staging (casa-financeira-staging-zg2mm.ondigitalocean.app, staging-app.casafinanceira.pt) and production (casa-financeira-prod-c2hy7.ondigitalocean.app, app.casafinanceira.pt); deploy workflows .github/workflows/bootstrap-prod.yml, .github/workflows/promote-prod.yml, .github/workflows/terraform.yml",
+      "**Network posture**: None configured",
+      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine or CI runner with open internet",
+      "**Source control**: The trusted repo (wearefractional/casa-financeira-platform) and its origin remote only (no additional orgs configured)",
+      "**Trusted internal domains**: casafinanceira.pt and its subdomains (app.casafinanceira.pt, staging-app.casafinanceira.pt, updates.casafinanceira.pt per .env.example Resend sender domain)",
+      "**Trusted cloud buckets**: None configured",
+      "**Key internal services**: DigitalOcean App Platform (api.digitalocean.com), Clerk (auth), Resend (transactional email, updates.casafinanceira.pt subdomain), Brevo (marketing email — never point local worker at real Brevo account per .env.example)",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: RGPD-regulated client data across multiple legal entities (teams), enforced at the Postgres Row-Level Security layer; packages/db/drizzle migrations touching connector-credentials, document-classification, and client_auth_events_retention; packages/db/src/secret-box.ts and connector-credentials-ops.ts — share only with audiences cleared at the [named+specifics] bar",
+      "**Data retention / declassification**: client_auth_events_retention migration (packages/db/drizzle/0337_client_auth_events_retention.sql) governs retention — treat as policy-bearing, not a blanket declassification",
+      "**Sensitive remote targets**: casa-financeira-prod-c2hy7.ondigitalocean.app, app.casafinanceira.pt (production), and any namespace/host/container with `prod`/`production` as a whole name segment",
+      "**Protected deployment namespaces / environments**: production DigitalOcean app (casa-financeira-prod-c2hy7.ondigitalocean.app, app.casafinanceira.pt); k8s namespace `apps` seen in usage but not clearly prod-scoped — fall back to Sensitive remote targets heuristic for namespace writes",
+      "**Protected IaC scopes**: infra/*.tf (main.tf, project.tf, registry.tf, databases.tf, backend.tf, alerts.tf, variables.tf), infra/app-prod.yaml, infra/.terraform.lock.hcl — IAM, RBAC, networking, quota, and node-pool resources; anything tagged prod/production",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (TypeScript monorepo — NestJS/Fastify API, React/Vite SPA, pg-boss worker)",
+      "**Trusted repo**: /Users/josevazf/subvisual/casa-financeira-platform (origin: github.com:wearefractional/casa-financeira-platform.git), private",
+      "**Org-specific CLIs**: doctl (DigitalOcean CLI, 25×), rtk (7×, referenced in ~/.claude/CLAUDE.md as @RTK.md import)",
+      "**routine under /Users/josevazf/subvisual/casa-financeira-platform/ prefix**: local dev workflow (pnpm install/dev/lint/typecheck/test/build, docker compose, direnv/eval for env loading) is routine"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Bash(doctl apps:*) on casa-financeira-prod-c2hy7 — restrict to read-only app/deployment inspection, block create/update/delete against the prod app ID",
+      "Bash(psql) connections targeting production DATABASE_URL / DO-managed prod Postgres"
+    ]
+  }
 }

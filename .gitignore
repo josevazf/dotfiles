@@ -1,5 +1,6 @@
 # General
 lazy-lock.json
+node_modules
 
 # tmux
 .config/tmux/plugins

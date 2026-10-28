@@ -6,3 +6,6 @@
 
 # Folders
 node_modules/
+claude_research/
+
+**/.claude/settings.local.json

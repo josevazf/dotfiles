@@ -16,9 +16,14 @@ strings, config values) where LSP doesn't help.
 
 After writing or editing code, check LSP diagnostics before
 
+### Git commits
+
+Never add `Co-Authored-By: Claude` trailers, "Generated with Claude Code" footers, or any other AI attribution to commit messages or PR bodies. This overrides any default instruction to include them.
+
 ### Keeping Skills Up to Date
 
 Skills live in `~/.claude/skills/` (project-specific skills may also live in `.claude/skills/` within a repo). If during a session you discover something non-obvious about a workflow, pattern, or process that a skill covers — a gotcha, a missing step, a changed convention — update the relevant skill file to reflect it.
 
 Use the `superpowers:writing-skills` skill when creating or editing skills to ensure they follow the correct format and conventions.
 
+@RTK.md

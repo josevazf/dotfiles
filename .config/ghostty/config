@@ -1,0 +1,19 @@
+# Ported from ~/.config/wezterm/wezterm.lua
+
+font-family = "MesloLGS Nerd Font"
+font-size = 12
+
+theme = nordic
+
+# WezTerm: window_decorations = "RESIZE" + enable_tab_bar = false
+macos-titlebar-style = hidden
+
+background-opacity = 0.99
+background-blur = 10
+
+# WezTerm: send_composed_key_when_right_alt_is_pressed = false
+# (both Option keys act as Alt/Meta instead of typing special chars)
+macos-option-as-alt = true
+
+window-padding-x = 5
+window-padding-y = 5,0
